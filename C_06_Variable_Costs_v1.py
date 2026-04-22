@@ -1,3 +1,5 @@
+import pandas
+
 # functions
 def not_blank(question):
     """Checks user response is not blank"""
@@ -65,8 +67,8 @@ def get_expenses(exp_type, how_many):
         item_name = not_blank("Item Name: ")
 
         # check users enter at least one variable expense
-        if (exp_type == "variable" and
-        item_name == "xxx") and len(all_items) == 0:
+        if ((exp_type == "variable" and item_name == "xxx")
+                 and len(all_items) == 0):
             print("Oops - you have not entered anything. "
                   "You need at least one item.")
             continue
@@ -87,6 +89,7 @@ def get_expenses(exp_type, how_many):
 
         all_items.append(item_name)
         all_amounts.append(amount)
+        all_dollar_per_item.append(cost)
 
     # make panda
     expense_frame = pandas.DataFrame(expenses_dict)
@@ -111,7 +114,6 @@ variable_expenses = get_expenses("variable", quantity_made)
 print()
 variable_panda = variable_expenses[0]
 variable_subtotal = variable_expenses[1]
-
 
 print(variable_panda)
 print(variable_subtotal)
